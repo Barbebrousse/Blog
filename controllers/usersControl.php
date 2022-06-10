@@ -3,10 +3,26 @@
 //Modèle utilisateur
 require_once('models/users.php');
 
-//On appel la fonciton qui retourne la liste des utilisateurs
-$users = getUsers();
+if(isset($_GET['action'])){
+    switch($_GET['action']){
+        case "create":
+            createUser($_POST['login'], $_POST['password']);
+            header('Location: index.php?page=utilisateurs');
+            break;
 
-//View
-include ('pages/utilisateurs.php');
+        case "delete":
+            deleteUser($_GET['id']);
+            header('Location: index.php?page=utilisateurs');
+            break;
 
-?>
+        default:
+            //View
+            include ('pages/404.php');
+            break;
+
+    }
+} else {
+    $users = getUsers();
+    //View
+    include ('pages/utilisateurs.php');
+}

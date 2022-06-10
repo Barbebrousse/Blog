@@ -63,3 +63,10 @@ input{
 input:focus {
     border-color: #2d2d2d;
 }
+
+ /* Connection-Inscription */
+
+#connexion {
+    display: flex;
+    align-items: center;
+}

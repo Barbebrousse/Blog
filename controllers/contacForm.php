@@ -1,6 +1,5 @@
 <?php 
 
-
 /**
  * 1 - Traitement de l'information (Model)
  * 

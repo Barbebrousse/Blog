@@ -5,6 +5,7 @@
         <tr>
             <th>Nom d'utilisateur</th>
             <th>Mot de passe</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -12,6 +13,7 @@
         foreach($users as $user){
             echo "<tr>";
               echo "<td>".$user['name']."</td><td>".$user['password']."</td>";
+              echo "<td><a href='index.php?page=utilisateurs&action=delete&id=".$user['id']."'>Supprimer</a></td>";
             echo "</tr>";
         }
     ?>

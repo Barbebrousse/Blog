@@ -1,7 +1,5 @@
 <?php
-
-//Fonction qui ce connecte à la base de donnée
-
+//Fonction qui ce connecte à la BDD (Base De Données)
 function connection () {
     //Utlisateur de MySQL
     $user = "root";
@@ -15,9 +13,7 @@ function connection () {
     return $bdd;
 }
 
-
-//Fonction qui communique avec la base de donnée et retourne la liste des utilisateurs
-
+//Fonction qui communique avec la BDD et retourne la liste des utilisateurs
 function getUsers(){
 
     //Connection à la BDD
@@ -31,13 +27,15 @@ function getUsers(){
 * Requête préparée
 * Retourne un utilisateur selon son login et son mdp
 */
+function getUserByLogin(string $login, string $pwd){
 
-function getUserByLogin($login, $pwd){
+    //Connection à la BDD
     $bdd = connection();
     $sql = "SELECT * FROM users 
            WHERE name=? 
            AND password=?";
-           
+
+    //Préparation à la requête       
     $requete = $bdd->prepare($sql);
 
     //Execution de la requête en passant 2 paramètres
@@ -46,5 +44,45 @@ function getUserByLogin($login, $pwd){
     return $requete->fetchAll();
 }
 
+//Récupération des informations depuis la BDD
+function loginByUser(string $login, string $pwd){
+    $user = getUserByLogin($login, $pwd);
+    if (isset($user[0])){
+        $_SESSION['user'] = $user[0];
+        setcookie('user', $user[0]['name']);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//Créer un nouvel utilisateur dans la BDD
+function createUser(string $name, string $pwd){
+
+    //Connection à la BDD
+    $bdd = connection();
+    $sql = "INSERT INTO users (name, password)
+           VALUES (?,?)";
+
+    //Préparation à la requête
+    $requete = $bdd->prepare($sql);
+
+    //Execution de la requête en passant 2 paramètres
+    return $requete ->execute([$name, $pwd]);
+}
+
+//Supprimer un utilisateur dans la BDD
+function deleteUser(int $id){
+
+    //Connection à la BDD
+    $bdd = connection();
+    $sql = "DELETE FROM users WHERE id= ?";
+
+    //Préparation à la requête
+    $requete = $bdd->prepare($sql);
+
+    //Execution de la requête
+    return $requete ->execute([$id]);
+}
 
 ?>
