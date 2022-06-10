@@ -23,6 +23,27 @@ function getUsers(){
     return $reponse->fetchAll();
 }
 
+function getUsersById(int $id){
+
+    //Connection à la BDD
+    $bdd = connection();
+
+    $sql = "SELECT * 
+            FROM users 
+            WHERE id=?";
+
+    //Préparation à la requête       
+    $requete = $bdd->prepare($sql);
+
+    //Execution de la requête en passant 1 paramètres
+    $requete->execute([$id]);
+
+    $date = $requete->fetchAll();
+
+    //Retourne le premier enregistrement de la requête
+    return $date[0];
+}
+
 /**
 * Requête préparée
 * Retourne un utilisateur selon son login et son mdp
@@ -83,6 +104,22 @@ function deleteUser(int $id){
 
     //Execution de la requête
     return $requete ->execute([$id]);
+}
+
+//Modifier un utilisateur dans la BDD
+function updateUser(int $id, string $name, string $pwd){
+
+    //Connection à la BDD
+    $bdd = connection();
+    $sql = "UPDATE users 
+           SET name=?, password=?
+           WHERE id=?";
+
+    //Préparation à la requête
+    $requete = $bdd->prepare($sql);
+
+    //Execution de la requête en passant 3 paramètres
+    return $requete ->execute([$name, $pwd, $id]);
 }
 
 ?>
