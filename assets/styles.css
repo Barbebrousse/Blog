@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;
+    margin-top: 110px;
+}
+
+
+    /* Barre de navigation */
+
+.container-fluid {
+    height: 90px;
+}
+
+header, .navbar, .container-fluid, .offcanvas {
+    color: whitesmoke;
+    --bs-navbar-color: ;
+    --bs-navbar-active-color: #6f9170;
+    --bs-navbar-brand-color: ;
+    background-color: #2d2d2d;
+    --bs-navbar-padding-y: 0;
+}
+
+
+
+
+    /* Contact */
+
+#message {
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#container p {
+    font-size: 20px;
+}       
+form {
+    margin: 0 auto;
+    width: 600px;
+    padding: 10px;
+}
+form div + div {
+    margin-top: 3px;
+}
+button {
+    height: 40px;
+    margin-top: 10px;
+    background-color: #6f9170;
+    border: 3px solid #6f9170;
+    border-radius: 10px;
+}
+input{
+    border-color: #6f9170;
+    border-radius: 10px;
+}
+input:focus {
+    border-color: #2d2d2d;
+}
