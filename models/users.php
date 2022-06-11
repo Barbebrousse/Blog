@@ -1,17 +1,5 @@
 <?php
-//Fonction qui ce connecte à la BDD (Base De Données)
-function connection () {
-    //Utlisateur de MySQL
-    $user = "root";
-    //Mot de passe de l'utilisateur MySQL
-    $pass="";
-
-    //Variable qui permet de nous connecter à la base de donnée
-    $dsn = 'mysql:host=localhost;dbname=blog';
-    $bdd = new PDO($dsn, $user, $pass);
-
-    return $bdd;
-}
+require_once('models/utils.php');
 
 //Fonction qui communique avec la BDD et retourne la liste des utilisateurs
 function getUsers(){
@@ -69,7 +57,8 @@ function getUserByLogin(string $login, string $pwd){
 function loginByUser(string $login, string $pwd){
     $user = getUserByLogin($login, $pwd);
     if (isset($user[0])){
-        $_SESSION['user'] = $user[0];
+        $_SESSION['user'] = $user[0]['name'];
+        $_SESSION['userId'] = $user[0]['id'];
         setcookie('user', $user[0]['name']);
         return true;
     } else {

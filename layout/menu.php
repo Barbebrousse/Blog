@@ -45,6 +45,7 @@
               En savoir plus
             </a>
             <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+            <li><a class="dropdown-item" href="?page=articles&action=new">Nouvel Article</a></li>
               <li><a class="dropdown-item" href="?page=info">Informations</a></li>
               <li><a class="dropdown-item" href="?page=contact">Contact</a></li>
               <li>

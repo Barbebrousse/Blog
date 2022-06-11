@@ -36,3 +36,5 @@ if(isset($_GET['action'])){
     //View
     include ('pages/utilisateurs.php');
 }
+
+?>

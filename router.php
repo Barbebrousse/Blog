@@ -25,6 +25,10 @@
             case "deconnection":
                 include("controllers/deconnect.php");
                 break;
+           
+            case "articles":
+                include("controllers/postControl.php");
+                break;
 
             case "utilisateurs":
                 include("controllers/usersControl.php");
@@ -35,6 +39,6 @@
                 break;
         }
     } else {
-        include("pages/acceuil.php");
+        include("controllers/postControl.php");
         }
 ?>
